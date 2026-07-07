@@ -8,19 +8,18 @@
     <meta property="og:title" content="{{ title }} | {{ site_title }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="{{ base_url }}posts/{{ slug }}/">
     <meta property="article:published_time" content="{{ iso_date }}">
     <meta property="og:site_name" content="{{ site_title }}">
     
     <title>{{ title }} | {{ site_title }}</title>
-    <link rel="icon" href="{{ base_url }}assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ base_url }}assets/style.css">
+    <link rel="icon" href="{{ relative_prefix }}assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ relative_prefix }}assets/style.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
             <h1 class="site-title">
-                <a href="{{ base_url }}">{{ site_title }}</a>
+                <a href="{{ relative_prefix }}">{{ site_title }}</a>
             </h1>
             <p class="site-description">{{ site_description }}</p>
         </div>
@@ -29,8 +28,8 @@
     <nav class="site-navigation">
         <div class="container">
             <ul class="nav-links">
-                <li><a href="{{ base_url }}">Home</a></li>
-                <li><a href="{{ base_url }}archive.html">Archive</a></li>
+                <li><a href="{{ relative_prefix }}">Home</a></li>
+                <li><a href="{{ relative_prefix }}archive.html">Archive</a></li>
             </ul>
         </div>
     </nav>
@@ -55,7 +54,7 @@
             </article>
             
             <nav class="post-navigation">
-                <a href="{{ base_url }}" class="back-link">&larr; Back to Home</a>
+                <a href="{{ relative_prefix }}" class="back-link">&larr; Back to Home</a>
             </nav>
         </div>
     </main>
