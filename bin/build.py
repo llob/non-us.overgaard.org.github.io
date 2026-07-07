@@ -63,7 +63,7 @@ def get_default_config() -> SiteConfig:
         title="Going cold turkey on the US",
         description="A journey towards a sovereign tech stack",
         author="",
-        base_url="/",
+        base_url="",
         posts_per_page=5,
         template_dir=str(Path(__file__).parent.parent / "templates"),
         content_dir=str(Path(__file__).parent.parent / "content" / "posts"),

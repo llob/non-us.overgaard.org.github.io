@@ -8,18 +8,17 @@
     <meta property="og:title" content="{{ site_title }}">
     <meta property="og:description" content="{{ site_description }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ base_url }}">
     <meta property="og:site_name" content="{{ site_title }}">
     
     <title>{{ site_title }}</title>
-    <link rel="icon" href="{{ base_url }}assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ base_url }}assets/style.css">
+    <link rel="icon" href="{{ relative_prefix }}assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ relative_prefix }}assets/style.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
             <h1 class="site-title">
-                <a href="{{ base_url }}">{{ site_title }}</a>
+                <a href="{{ relative_prefix }}">{{ site_title }}</a>
             </h1>
             <p class="site-description">{{ site_description }}</p>
         </div>
@@ -28,8 +27,8 @@
     <nav class="site-navigation">
         <div class="container">
             <ul class="nav-links">
-                <li><a href="{{ base_url }}" class="active">Home</a></li>
-                <li><a href="{{ base_url }}archive.html">Archive</a></li>
+                <li><a href="{{ relative_prefix }}" class="active">Home</a></li>
+                <li><a href="{{ relative_prefix }}archive.html">Archive</a></li>
             </ul>
         </div>
     </nav>
@@ -42,7 +41,7 @@
                 {% for post in posts %}
                 <article class="post-summary">
                     <h3 class="post-title">
-                        <a href="{{ base_url }}posts/{{ slug }}/">{{ title }}</a>
+                        <a href="{{ relative_prefix }}posts/{{ slug }}/">{{ title }}</a>
                     </h3>
                     <div class="post-meta">
                         <time datetime="{{ iso_date }}">{{ formatted_date }}</time>
@@ -50,14 +49,14 @@
                     <div class="post-excerpt">
                         {{ description }}
                     </div>
-                    <a href="{{ base_url }}posts/{{ slug }}/" class="read-more">Read more &rarr;</a>
+                    <a href="{{ relative_prefix }}posts/{{ slug }}/" class="read-more">Read more &rarr;</a>
                 </article>
                 {% endfor %}
             </section>
             
             {% if has_more_posts %}
             <nav class="pagination">
-                <a href="{{ next_page_url }}" class="next-page">Older Posts &rarr;</a>
+                <a href="{{ relative_prefix }}{{ next_page_url }}" class="next-page">Older Posts &rarr;</a>
             </nav>
             {% endif %}
         </div>

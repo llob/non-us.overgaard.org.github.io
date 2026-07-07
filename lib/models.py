@@ -96,7 +96,7 @@ class SiteConfig:
     title: str = "Going cold turkey on the US"
     description: str = "A journey towards a sovereign tech stack"
     author: str = ""
-    base_url: str = "/"
+    base_url: str = ""
     posts_per_page: int = 5
     template_dir: str = "templates"
     content_dir: str = "content/posts"
