@@ -419,21 +419,6 @@ class SiteGenerator:
                 logger.info(f"Copied favicon to root: {favicon_src} -> {favicon_dest}")
             except IOError as e:
                 logger.error(f"Error copying favicon to root: {e}")
-        
-        # Copy CNAME file from repo root to output directory for GitHub Pages custom domain
-        repo_root = Path(self.config.template_dir).parent
-        cname_src = repo_root / "CNAME"
-        cname_dest = Path(self.config.output_dir) / "CNAME"
-        if cname_src.exists():
-            try:
-                # Read and write to preserve exact content (avoid newline issues with shutil.copy2)
-                with open(cname_src, 'rb') as f:
-                    content = f.read()
-                with open(cname_dest, 'wb') as f:
-                    f.write(content)
-                logger.info(f"Copied CNAME: {cname_src} -> {cname_dest}")
-            except IOError as e:
-                logger.error(f"Error copying CNAME: {e}")
     
     def _copy_media_files(self, content_dir: Path, output_root: Path) -> None:
         """Copy media files from content directory to output directory.
@@ -534,16 +519,20 @@ class SiteGenerator:
         """
         Clean the output directory by removing all generated files.
         
-        This is useful for a clean rebuild.
+        This is useful for a clean rebuild. Preserves the CNAME file and .git directory
+        as these are not generated during publication.
         """
         output_dir = Path(self.config.output_dir)
         
         if not output_dir.exists():
             return
         
-        # Remove all files and directories except .git (if it exists)
+        # Files and directories to preserve (not generated during publication)
+        preserve_items = {'.git', 'CNAME'}
+        
+        # Remove all files and directories except preserved items
         for item in output_dir.iterdir():
-            if item.name == '.git':
+            if item.name in preserve_items:
                 continue
             if item.is_file():
                 try:
