@@ -93,10 +93,10 @@ class SiteConfig:
         content_dir: Directory containing Markdown content files.
         output_dir: Directory where generated HTML files will be saved.
     """
-    title: str = "My Blog"
-    description: str = "A simple blog"
+    title: str = "Going cold turkey on the US"
+    description: str = "A journey towards a sovereign tech stack"
     author: str = ""
-    base_url: str = "/non-us.overgaard.org.github.io/"
+    base_url: str = ""
     posts_per_page: int = 5
     template_dir: str = "templates"
     content_dir: str = "content/posts"

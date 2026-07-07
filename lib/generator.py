@@ -236,9 +236,10 @@ class SiteGenerator:
             "site_title": self.config.title,
             "site_description": self.config.description,
             "base_url": self.config.base_url,
+            "relative_prefix": "",
             "posts": [self._post_to_template_dict(post) for post in latest_posts],
             "has_more_posts": has_more_posts,
-            "next_page_url": "/page/2/" if has_more_posts else None,
+            "next_page_url": "page/2/" if has_more_posts else None,
             "is_index": True,
             "current_page": 1,
             "total_pages": max(1, (len(self.posts) + self.config.posts_per_page - 1) // self.config.posts_per_page),
@@ -276,6 +277,7 @@ class SiteGenerator:
                 "site_title": self.config.title,
                 "site_description": self.config.description,
                 "base_url": self.config.base_url,
+                "relative_prefix": "../../",
                 "is_post": True,
             }
             # Add all post fields directly to the context
@@ -339,6 +341,7 @@ class SiteGenerator:
                 "site_title": self.config.title,
                 "site_description": self.config.description,
                 "base_url": self.config.base_url,
+                "relative_prefix": "../../",
                 "posts": [self._post_to_template_dict(post) for post in page_posts],
                 "pagination": pagination_dict,  # Keep for compatibility
                 "current_page": page_num,
@@ -366,6 +369,7 @@ class SiteGenerator:
             "site_title": self.config.title,
             "site_description": self.config.description,
             "base_url": self.config.base_url,
+            "relative_prefix": "",
             "posts": [self._post_to_template_dict(post) for post in self.posts],
             "is_archive": True,
             "archive_title": "All Posts Archive",
@@ -374,7 +378,7 @@ class SiteGenerator:
             "has_previous": False,
             "has_next": total_pages > 1,
             "previous_page_url": None,
-            "next_page_url": f"{self.config.base_url}page/2/" if total_pages > 1 else None,
+            "next_page_url": "page/2/" if total_pages > 1 else None,
         }
         
         try:
@@ -405,6 +409,31 @@ class SiteGenerator:
                     logger.info(f"Copied asset: {file_path} -> {dest_path}")
                 except IOError as e:
                     logger.error(f"Error copying asset {file_path}: {e}")
+        
+        # Also copy favicon.ico to the root of the output directory for GitHub Pages
+        favicon_src = assets_src / "favicon.ico"
+        favicon_dest = Path(self.config.output_dir) / "favicon.ico"
+        if favicon_src.exists():
+            try:
+                shutil.copy2(favicon_src, favicon_dest)
+                logger.info(f"Copied favicon to root: {favicon_src} -> {favicon_dest}")
+            except IOError as e:
+                logger.error(f"Error copying favicon to root: {e}")
+        
+        # Copy CNAME file from repo root to output directory for GitHub Pages custom domain
+        repo_root = Path(self.config.template_dir).parent
+        cname_src = repo_root / "CNAME"
+        cname_dest = Path(self.config.output_dir) / "CNAME"
+        if cname_src.exists():
+            try:
+                # Read and write to preserve exact content (avoid newline issues with shutil.copy2)
+                with open(cname_src, 'rb') as f:
+                    content = f.read()
+                with open(cname_dest, 'wb') as f:
+                    f.write(content)
+                logger.info(f"Copied CNAME: {cname_src} -> {cname_dest}")
+            except IOError as e:
+                logger.error(f"Error copying CNAME: {e}")
     
     def _copy_media_files(self, content_dir: Path, output_root: Path) -> None:
         """Copy media files from content directory to output directory.

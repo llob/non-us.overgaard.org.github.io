@@ -3,8 +3,6 @@ name: Build and Deploy
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -33,9 +31,9 @@ jobs:
         run: python3 bin/build.py --clean
       
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           keep_files: false
+          commit_message: "Publish site: ${github.sha}"
