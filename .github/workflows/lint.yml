@@ -10,14 +10,19 @@ on:
 jobs:
   lint:
     name: Super-Linter
-    uses: super-linter/super-linter/.github/workflows/linter.yml@v5
-    with:
-      VALIDATE_ALL_CODEBASE: false
-      VALIDATE_PYTHON: true
-      VALIDATE_HTML: true
-      VALIDATE_CSS: true
-      VALIDATE_MARKDOWN: true
-      VALIDATE_YAML: true
-      DEFAULT_BRANCH: main
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Super-Linter
+        uses: super-linter/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_PYTHON: true
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
