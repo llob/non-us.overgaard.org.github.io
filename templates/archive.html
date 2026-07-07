@@ -54,15 +54,15 @@
                 {% for post in posts %}
                 <article class="post-summary">
                     <h3 class="post-title">
-                        <a href="{{ base_url }}posts/{{ post_slug }}/">{{ post_title }}</a>
+                        <a href="{{ base_url }}posts/{{ slug }}/">{{ title }}</a>
                     </h3>
                     <div class="post-meta">
-                        <time datetime="{{ post_iso_date }}">{{ post_formatted_date }}</time>
+                        <time datetime="{{ iso_date }}">{{ formatted_date }}</time>
                     </div>
                     <div class="post-excerpt">
                         {{ description }}
                     </div>
-                    <a href="{{ base_url }}posts/{{ post_slug }}/" class="read-more">Read more &rarr;</a>
+                    <a href="{{ base_url }}posts/{{ slug }}/" class="read-more">Read more &rarr;</a>
                 </article>
                 {% endfor %}
             </section>
