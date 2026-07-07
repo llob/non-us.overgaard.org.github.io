@@ -1,0 +1,19 @@
+name: Lint
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: Super-Linter
+    uses: super-linter/super-linter/.github/workflows/linter.yml@v5
+    with:
+      VALIDATE_ALL_CODEBASE: false
+      VALIDATE_PYTHON: true
+      VALIDATE_HTML: true
+      VALIDATE_CSS: true
+      VALIDATE_MARKDOWN: true
+      VALIDATE_YAML: true
+      DEFAULT_BRANCH: main
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

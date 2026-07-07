@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ site_description }}">
+    
+    <meta property="og:title" content="{{ site_title }}">
+    <meta property="og:description" content="{{ site_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ base_url }}">
+    <meta property="og:site_name" content="{{ site_title }}">
+    
+    <title>{{ site_title }}</title>
+    <link rel="stylesheet" href="{{ base_url }}assets/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="{{ base_url }}">{{ site_title }}</a>
+            </h1>
+            <p class="site-description">{{ site_description }}</p>
+        </div>
+    </header>
+    
+    <nav class="site-navigation">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="{{ base_url }}" class="active">Home</a></li>
+                <li><a href="{{ base_url }}archive.html">Archive</a></li>
+                <li><a href="{{ base_url }}about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="site-content">
+        <div class="container">
+            <section class="post-list">
+                <h2>Latest Posts</h2>
+                
+                {% for post in posts %}
+                <article class="post-summary">
+                    <h3 class="post-title">
+                        <a href="{{ base_url }}posts/{{ slug }}/">{{ title }}</a>
+                    </h3>
+                    <div class="post-meta">
+                        <time datetime="{{ iso_date }}">{{ formatted_date }}</time>
+                    </div>
+                    <div class="post-excerpt">
+                        {{ description }}
+                    </div>
+                    <a href="{{ base_url }}posts/{{ slug }}/" class="read-more">Read more &rarr;</a>
+                </article>
+                {% endfor %}
+            </section>
+            
+            {% if has_more_posts %}
+            <nav class="pagination">
+                <a href="{{ next_page_url }}" class="next-page">Older Posts &rarr;</a>
+            </nav>
+            {% endif %}
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ site_title }}</p>
+        </div>
+    </footer>
+</body>
+</html>

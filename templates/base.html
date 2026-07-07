@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ site_description }}">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="{{ site_title }}">
+    <meta property="og:description" content="{{ site_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ base_url }}">
+    <meta property="og:site_name" content="{{ site_title }}">
+
+    <!-- {% if is_post %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ post.iso_date }}">
+
+    <meta property="og:title" content="{{ post.title }} | {{ site_title }}">
+    <meta property="og:description" content="{{ post.description or site_description }}">
+    {% endif %} -->
+    
+    <title>
+        {% if is_post %}
+        {{ post.title }} | {{ site_title }}
+        {% elif is_archive %}
+        Archive | {{ site_title }}
+        {% else %}
+        {{ site_title }}
+        {% endif %}
+    </title>
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ base_url }}assets/style.css">
+    
+    <!-- RSS Feed (if enabled in the future) -->
+    <link rel="alternate" type="application/rss+xml" title="{{ site_title }} RSS Feed" href="{{ base_url }}feed.xml">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="{{ base_url }}">{{ site_title }}</a>
+            </h1>
+            <p class="site-description">{{ site_description }}</p>
+        </div>
+    </header>
+    
+    <nav class="site-navigation">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="{{ base_url }}" {% if is_index %}class="active"{% endif %}>Home</a></li>
+                <li><a href="{{ base_url }}archive.html" {% if is_archive %}class="active"{% endif %}>Archive</a></li>
+                <li><a href="{{ base_url }}about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="site-content">
+        <div class="container">
+            {# Main content will be inserted here by child templates #}
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ site_title }}</p>
+        </div>
+    </footer>
+</body>
+</html>
