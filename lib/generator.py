@@ -419,6 +419,17 @@ class SiteGenerator:
                 logger.info(f"Copied favicon to root: {favicon_src} -> {favicon_dest}")
             except IOError as e:
                 logger.error(f"Error copying favicon to root: {e}")
+        
+        # Copy CNAME file from repo root to output directory for GitHub Pages custom domain
+        repo_root = Path(self.config.template_dir).parent
+        cname_src = repo_root / "CNAME"
+        cname_dest = Path(self.config.output_dir) / "CNAME"
+        if cname_src.exists():
+            try:
+                shutil.copy2(cname_src, cname_dest)
+                logger.info(f"Copied CNAME: {cname_src} -> {cname_dest}")
+            except IOError as e:
+                logger.error(f"Error copying CNAME: {e}")
     
     def _copy_media_files(self, content_dir: Path, output_root: Path) -> None:
         """Copy media files from content directory to output directory.
