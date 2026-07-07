@@ -96,7 +96,7 @@ class SiteConfig:
     title: str = "My Blog"
     description: str = "A simple blog"
     author: str = ""
-    base_url: str = "/"
+    base_url: str = "/non-us.overgaard.org.github.io/"
     posts_per_page: int = 5
     template_dir: str = "templates"
     content_dir: str = "content/posts"

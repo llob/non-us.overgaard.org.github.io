@@ -63,7 +63,7 @@ def get_default_config() -> SiteConfig:
         title="My Blog",
         description="A simple blog",
         author="",
-        base_url="/",
+        base_url="/non-us.overgaard.org.github.io/",
         posts_per_page=5,
         template_dir=str(Path(__file__).parent.parent / "templates"),
         content_dir=str(Path(__file__).parent.parent / "content" / "posts"),
