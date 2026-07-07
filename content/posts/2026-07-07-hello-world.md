@@ -1,5 +1,5 @@
 ---
-title: Hello World
+title: Hello World #2
 date: 2026-07-07
 description: A first post for this new blog
 ---
