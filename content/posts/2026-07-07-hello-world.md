@@ -1,19 +1,19 @@
 ---
-title: Hello World #2
+title: The TODO list
 date: 2026-07-07
-description: A first post for this new blog
+description: The migration TODO list
 ---
 
-# Hello World
+# The TODO list
 
-This is the first post on this blog. Welcome!
+So, what systems/tools/software do I need to migrate away from the US:
 
-## What is this about?
-
-This is a simple static blog system that generates HTML from Markdown content.
-
-## Features
-
-- Markdown to HTML conversion
-- Simple pagination
-- Clean, static output suitable for GitHub Pages
+| From             | To           |
+|------------------|--------------|
+| Bitwarden        | Proton Pass  |
+| GitHub           | ?            |
+| iPhone           | Fairphone    |
+| Claude code      | Mistral Vibe |
+| Windows          | ?            |
+| Apple Music      | Spotify      |
+| Microsoft Office | LibreOffice  |
