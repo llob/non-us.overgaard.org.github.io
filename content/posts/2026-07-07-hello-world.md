@@ -17,3 +17,9 @@ So, what systems/tools/software do I need to migrate away from the US:
 | Windows          | ?            |
 | Apple Music      | Spotify      |
 | Microsoft Office | LibreOffice  |
+| Cloudflare       | Hetzner      |
+| AWS              | Hetzner      |
+| iCloud           | ?            |
+| Dell             | ?            |
+| Nvidia           | ?            |
+| Hashicorp Nomad  | ?            |
