@@ -1,8 +1,12 @@
 name: Lint
 
 on:
+  push:
+    branches-ignore:
+      - main
   pull_request:
-    branches: [ main ]
+    branches-ignore:
+      - main
 
 jobs:
   lint:
