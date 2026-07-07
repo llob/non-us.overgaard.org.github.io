@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All posts archive - {{ site_description }}">
+    
+    <meta property="og:title" content="Archive | {{ site_title }}">
+    <meta property="og:description" content="All posts archive - {{ site_description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ base_url }}archive.html">
+    <meta property="og:site_name" content="{{ site_title }}">
+    
+    <title>
+        {% if current_page and current_page > 1 %}
+        Page {{ current_page }} | {{ site_title }}
+        {% else %}
+        Archive | {{ site_title }}
+        {% endif %}
+    </title>
+    <link rel="stylesheet" href="{{ base_url }}assets/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="{{ base_url }}">{{ site_title }}</a>
+            </h1>
+            <p class="site-description">{{ site_description }}</p>
+        </div>
+    </header>
+    
+    <nav class="site-navigation">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="{{ base_url }}">Home</a></li>
+                <li><a href="{{ base_url }}archive.html" class="active">Archive</a></li>
+                <li><a href="{{ base_url }}about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="site-content">
+        <div class="container">
+            <section class="post-list">
+                <h2>
+                    {% if current_page and current_page > 1 %}
+                    Page {{ current_page }} of {{ total_pages }}
+                    {% else %}
+                    All Posts Archive
+                    {% endif %}
+                </h2>
+                
+                {% for post in posts %}
+                <article class="post-summary">
+                    <h3 class="post-title">
+                        <a href="{{ base_url }}posts/{{ post_slug }}/">{{ post_title }}</a>
+                    </h3>
+                    <div class="post-meta">
+                        <time datetime="{{ post_iso_date }}">{{ post_formatted_date }}</time>
+                    </div>
+                    <div class="post-excerpt">
+                        {{ description }}
+                    </div>
+                    <a href="{{ base_url }}posts/{{ post_slug }}/" class="read-more">Read more &rarr;</a>
+                </article>
+                {% endfor %}
+            </section>
+            
+            {% if has_previous or has_next %}
+            <nav class="pagination">
+            {% endif %}
+            {% if has_previous %}
+            <a href="{{ previous_page_url }}" class="prev-page">&larr; Newer Posts</a>
+            {% endif %}
+            <span class="pagination-info">Page {{ current_page }} of {{ total_pages }}</span>
+            {% if has_next %}
+            <a href="{{ next_page_url }}" class="next-page">Older Posts &rarr;</a>
+            {% endif %}
+            {% if has_previous or has_next %}
+            </nav>
+            {% endif %}
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ site_title }}</p>
+        </div>
+    </footer>
+</body>
+</html>
