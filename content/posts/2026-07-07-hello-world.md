@@ -4,8 +4,6 @@ date: 2026-07-07
 description: The migration TODO list
 ---
 
-# The TODO list
-
 So, what systems/tools/software do I need to migrate away from the US:
 
 | From             | To           |
