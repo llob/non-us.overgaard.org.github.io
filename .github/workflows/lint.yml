@@ -2,10 +2,10 @@ name: Lint
 
 on:
   pull_request:
-    branches: [ main ]
 
 jobs:
   lint:
+    if: github.head_ref != 'main'
     name: Super-Linter
     uses: super-linter/super-linter/.github/workflows/linter.yml@v5
     with:
