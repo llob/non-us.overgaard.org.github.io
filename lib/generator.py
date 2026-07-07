@@ -426,7 +426,11 @@ class SiteGenerator:
         cname_dest = Path(self.config.output_dir) / "CNAME"
         if cname_src.exists():
             try:
-                shutil.copy2(cname_src, cname_dest)
+                # Read and write to preserve exact content (avoid newline issues with shutil.copy2)
+                with open(cname_src, 'rb') as f:
+                    content = f.read()
+                with open(cname_dest, 'wb') as f:
+                    f.write(content)
                 logger.info(f"Copied CNAME: {cname_src} -> {cname_dest}")
             except IOError as e:
                 logger.error(f"Error copying CNAME: {e}")
